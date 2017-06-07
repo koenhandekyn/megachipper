@@ -18,7 +18,6 @@ class BlankTimeSheet
       groen[1+27][2].change_contents(employee_name)
 
       (0..17).each do |i|
-        puts (start+i).wday
         day_of_month, day = case (start+i).wday
           when 1..5 then [i+1, I18n.l(start+i.days, format: :day).upcase]
           when 6 then ['', 'TOT']
