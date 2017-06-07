@@ -1,0 +1,31 @@
+h1 Listing time_registrations
+
+table
+  thead
+    tr
+      th Prestation date
+      th Work order
+      th Employee
+      th Employee number
+      th Hours
+      th Pay code
+      th
+      th
+      th
+
+  tbody
+    - @time_registrations.each do |time_registration|
+      tr
+        td = time_registration.prestation_date
+        td = time_registration.work_order_id
+        td = time_registration.employee_id
+        td = time_registration.employee_number
+        td = time_registration.hours
+        td = time_registration.pay_code
+        td = link_to 'Show', time_registration
+        td = link_to 'Edit', edit_time_registration_path(time_registration)
+        td = link_to 'Destroy', time_registration, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Time registration', new_time_registration_path

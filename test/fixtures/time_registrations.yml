@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prestation_date: 2017-06-07
+  work_order_id: 1
+  employee_id: 1
+  employee_number: 1
+  hours: 9.99
+  pay_code: MyString
+
+two:
+  prestation_date: 2017-06-07
+  work_order_id: 1
+  employee_id: 1
+  employee_number: 1
+  hours: 9.99
+  pay_code: MyString

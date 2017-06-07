@@ -1,0 +1,33 @@
+h1 Listing employees
+
+table
+  thead
+    tr
+      th Number
+      th Name
+      th Regime
+      th Hour rate
+      th Hour rate bonus
+      th Employer
+      th Socsec
+      th
+      th
+      th
+
+  tbody
+    - @employees.each do |employee|
+      tr
+        td = employee.number
+        td = employee.name
+        td = employee.regime
+        td = employee.hour_rate
+        td = employee.hour_rate_bonus
+        td = employee.employer_id
+        td = employee.socsec_id
+        td = link_to 'Show', employee
+        td = link_to 'Edit', edit_employee_path(employee)
+        td = link_to 'Destroy', employee, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Employee', new_employee_path

@@ -1,0 +1,27 @@
+p#notice = notice
+
+p
+  strong Number:
+  = @employee.number
+p
+  strong Name:
+  = @employee.name
+p
+  strong Regime:
+  = @employee.regime
+p
+  strong Hour rate:
+  = @employee.hour_rate
+p
+  strong Hour rate bonus:
+  = @employee.hour_rate_bonus
+p
+  strong Employer:
+  = @employee.employer_id
+p
+  strong Socsec:
+  = @employee.socsec_id
+
+= link_to 'Edit', edit_employee_path(@employee)
+'  |
+= link_to 'Back', employees_path
