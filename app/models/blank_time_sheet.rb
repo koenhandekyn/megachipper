@@ -17,7 +17,9 @@ class BlankTimeSheet
       groen[1+27][1].change_contents(employee_number)
       groen[1+27][2].change_contents(employee_name)
 
-      (0..17).each do |i|
+      offset = (start+17).wday <= 5 ? (start+17).wday : 0
+
+      (0..(17-offset)).each do |i|
         day_of_month, day = case (start+i).wday
           when 1..5 then [i+1, I18n.l(start+i.days, format: :day).upcase]
           when 6 then ['', 'TOT']
@@ -27,14 +29,14 @@ class BlankTimeSheet
         groen[2][3+i].change_contents(day_of_month)
       end
 
-      (18..(start.end_of_month.day-1)).each do |i|
+      ((18-offset)..(start.end_of_month.day-1)).each do |i|
         day_of_month, day = case (start+i).wday
           when 1..5 then [i+1, I18n.l(start+i.days, format: :day).upcase]
           when 6 then ['', 'TOT']
           when 0 then ['', '']
         end
-        groen[1+27][3-18+i].change_contents(day)
-        groen[2+27][3-18+i].change_contents(day_of_month)
+        groen[1+27][3-(18-offset)+i].change_contents(day)
+        groen[2+27][3-(18-offset)+i].change_contents(day_of_month)
       end
 
       wit = workbook['wit']
