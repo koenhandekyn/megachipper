@@ -13,7 +13,8 @@ class EmployeesController < ApplicationController
   end
 
   def blank_time_sheet
-    start = Time.now.beginning_of_month.to_date
+    # start = Time.now.beginning_of_month.to_date
+    start = Date.new(Time.now.year, params[:month].to_i, 1)
     month = I18n.l(start, format: :month)
     result_path = BlankTimeSheet.create(start: start, employee_name: @employee.name, employee_number: @employee.number)
     send_file(result_path,

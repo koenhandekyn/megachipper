@@ -5,13 +5,14 @@ table
     tr
       th Number
       th Name
-      th
-      th
-      th
+      th Groene Kaart
 
   tbody
     - @employees.each do |employee|
       tr
         td = employee.number
         td = employee.name
-        td = link_to 'Groene Kaart', blank_time_sheet_employee_path(employee)
+        td
+          => link_to I18n.l(Time.now-1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now-1.month).month)
+          => link_to I18n.l(Time.now, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now).month)
+          => link_to I18n.l(Time.now+1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now+1.month).month)
