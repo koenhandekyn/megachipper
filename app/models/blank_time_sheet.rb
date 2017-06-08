@@ -2,7 +2,7 @@ require 'rubyXL'
 
 class BlankTimeSheet
 
-  def self.create(start:, employee_number:, employee_name: )
+  def self.create(start:, employee_number:, employee_name:, employee_firstname:)
 
       # month = start.strftime("%B")
       month = I18n.l(start, format: :month)
@@ -42,7 +42,7 @@ class BlankTimeSheet
       wit = workbook['wit']
       (0..4).each do |i|
         wit[0][0+i*7].change_contents(month)
-        wit[0][1+i*7].change_contents(employee_name)
+        wit[0][1+i*7].change_contents(employee_firstname)
       end
 
       (0..(start.end_of_month.day-1)).each do |i|

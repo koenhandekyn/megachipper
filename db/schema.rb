@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170607193416) do
+ActiveRecord::Schema.define(version: 20170608063059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170607193416) do
 
   create_table "employees", force: :cascade do |t|
     t.integer "number"
-    t.string "name"
+    t.string "lastname"
     t.json "regime"
     t.decimal "hour_rate"
     t.decimal "hour_rate_bonus"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20170607193416) do
     t.string "socsec_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "firstname"
   end
 
   create_table "time_registrations", force: :cascade do |t|

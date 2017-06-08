@@ -1,5 +1,9 @@
 class Employee < ApplicationRecord
 
+  def name
+    "#{firstname} #{lastname}"
+  end
+
   def regime_raw
     JSON.generate(self.regime || {}) rescue "{}"
   end

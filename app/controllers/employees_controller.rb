@@ -16,7 +16,10 @@ class EmployeesController < ApplicationController
     # start = Time.now.beginning_of_month.to_date
     start = Date.new(Time.now.year, params[:month].to_i, 1)
     month = I18n.l(start, format: :month)
-    result_path = BlankTimeSheet.create(start: start, employee_name: @employee.name, employee_number: @employee.number)
+    result_path = BlankTimeSheet.create(start: start,
+                                        employee_name: @employee.name,
+                                        employee_firstname: @employee.firstname,
+                                        employee_number: @employee.number)
     send_file(result_path,
       :filename => "#{month}_#{@employee.name}_#{@employee.number}.xlsx",
       :type => "application/xlsx")
