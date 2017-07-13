@@ -1,12 +1,12 @@
-h1 Listing employees
+h1 Werknemers
 
 table
   thead
     tr
-      th Number
-      th Name
+      th Nummer
+      th Naam
       th Groene Kaart
-
+      th Ingave
   tbody
     - @employees.each do |employee|
       tr
@@ -16,3 +16,10 @@ table
           => link_to I18n.l(Time.now-1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now-1.month).month)
           => link_to I18n.l(Time.now, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now).month)
           => link_to I18n.l(Time.now+1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now+1.month).month)
+        td
+          => I18n.l(Time.now-1.month, format: :month)
+          - 5.times do |i|
+            => link_to i+1, time_sheet_employee_path(employee, month: (Time.now-1.month).month)
+          => I18n.l(Time.now, format: :month)
+          - 5.times do |i|
+            => link_to i+1, time_sheet_employee_path(employee, month: (Time.now).month)

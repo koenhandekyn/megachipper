@@ -1,23 +1,5 @@
 p#notice = notice
 
-p
-  strong Prestation date:
-  = @time_registration.prestation_date
-p
-  strong Work order:
-  = @time_registration.work_order_id
-p
-  strong Employee:
-  = @time_registration.employee_id
-p
-  strong Employee number:
-  = @time_registration.employee_number
-p
-  strong Hours:
-  = @time_registration.hours
-p
-  strong Pay code:
-  = @time_registration.pay_code
 
 = link_to 'Edit', edit_time_registration_path(@time_registration)
 '  |

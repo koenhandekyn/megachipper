@@ -5,7 +5,7 @@ class CreateTimeRegistrations < ActiveRecord::Migration[5.1]
       t.integer :work_order_id
       t.integer :employee_id
       t.integer :employee_number
-      t.decimal :hours
+      t.decimal :hours, default: 0.0
       t.string :pay_code
 
       t.timestamps

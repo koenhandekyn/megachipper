@@ -1,5 +1,5 @@
 class EmployeesController < ApplicationController
-  before_action :set_employee, only: [:blank_time_sheet, :show, :edit, :update, :destroy]
+  before_action :set_employee, only: [:blank_time_sheet, :time_sheet, :show, :edit, :update, :destroy]
 
   # GET /employees
   # GET /employees.json
@@ -12,17 +12,28 @@ class EmployeesController < ApplicationController
   def show
   end
 
+  # GET /employees/1/blank_time_sheet
   def blank_time_sheet
     # start = Time.now.beginning_of_month.to_date
-    start = Date.new(Time.now.year, params[:month].to_i, 1)
-    month = I18n.l(start, format: :month)
-    result_path = BlankTimeSheet.create(start: start,
+    result_path = BlankTimeSheet.create(start: helpers.start_of_month(params[:month].to_i),
                                         employee_name: @employee.name,
                                         employee_firstname: @employee.firstname,
                                         employee_number: @employee.number)
     send_file(result_path,
-      :filename => "#{month}_#{@employee.name}_#{@employee.number}.xlsx",
+      :filename => "#{month_name}_#{@employee.name}_#{@employee.number}.xlsx",
       :type => "application/xlsx")
+  end
+
+  # GET /employees/1/time_sheet
+  def time_sheet
+    start_of_month_wday = helpers.start_of_month(params[:month].to_i).wday
+
+    @period_start = case start_of_month_wday
+      when 0..5
+        Date.new(Time.now.year, params[:month].to_i, 1)-start_of_month_wday.days+1.days+(helpers.period()*7).days
+      when 6
+        Date.new(Time.now.year, params[:month].to_i, 1)-start_of_month_wday.days+1.days+((helpers.period()+1)*7).days
+    end
   end
 
   # GET /employees/new
@@ -38,7 +49,6 @@ class EmployeesController < ApplicationController
   # POST /employees.json
   def create
     @employee = Employee.new(employee_params)
-
     respond_to do |format|
       if @employee.save
         format.html { redirect_to @employee, notice: 'Employee was successfully created.' }
@@ -75,6 +85,7 @@ class EmployeesController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_employee
       @employee = Employee.find(params[:id])

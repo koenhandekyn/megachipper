@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170608063059) do
+ActiveRecord::Schema.define(version: 20170712073247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 20170608063059) do
     t.integer "employee_number"
     t.decimal "hours"
     t.string "pay_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.decimal "extra", default: "0.0"
+  end
+
+  create_table "time_sheet_rows", force: :cascade do |t|
+    t.integer "employee_id"
+    t.integer "work_order_id"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

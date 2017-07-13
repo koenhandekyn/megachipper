@@ -41,6 +41,10 @@ gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin.git'
 gem 'activeadmin_addons'
 gem 'rails-i18n'
 gem 'rubyXL', :require => false # , '=3.1.0'
+gem 'bourbon'
+gem 'neat'
+gem 'bitters'
+gem 'refills'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -1,0 +1,77 @@
+// Place all the styles related to the Employees controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$cell-padding: 4px;
+
+.previous, .next, .periods {
+  display: inline-block;
+  width: 33.33%;
+  padding-bottom: 2em;
+}
+
+.previous {
+  text-align: left;
+}
+
+.periods {
+  text-align: center;
+  a {
+    padding: 0.75em;
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+  a.current {
+    background-color: white;
+    border: 1px solid black;
+  }
+}
+
+.next {
+  text-align: right;
+}
+
+table.time_sheet {
+  [disabled] {
+    color: grey;
+  }
+  td, th {
+    text-align: center;
+    padding: $cell-padding;
+    padding-left: $cell-padding / 2;
+    padding-right: $cell-padding / 2;
+  }
+  border: 1px solid black;
+  input, input[disabled] {
+    margin: 0px;
+    text-align: center;
+  }
+  .green input, .green input[disabled], .werkblad input {
+    background-color: lighten(#b4ecb4,10%);
+  }
+  .white input, .white input[disabled] {
+    background-color: white;
+  }
+  .werkblad {
+    width: 5em;
+  }
+  .white {
+    background-color: white;
+  }
+  .d0 {
+    border-left: 1px solid black;
+  }
+  th.d0, td.d0 {
+    padding-left: $cell-padding;
+  }
+  th.d4, td.d4 {
+    padding-right: $cell-padding;
+  }
+  .tot, .fm {
+    border-left: 1px solid black;
+  }
+  input.alert  {
+    background-color: lighten(red, 35%);
+  }
+}
+

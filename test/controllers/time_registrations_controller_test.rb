@@ -17,7 +17,7 @@ class TimeRegistrationsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create time_registration" do
     assert_difference('TimeRegistration.count') do
-      post time_registrations_url, params: { time_registration: { employee_id: @time_registration.employee_id, employee_number: @time_registration.employee_number, hours: @time_registration.hours, pay_code: @time_registration.pay_code, prestation_date: @time_registration.prestation_date, work_order_id: @time_registration.work_order_id } }
+      post time_registrations_url, params: { time_registration: {  } }
     end
 
     assert_redirected_to time_registration_url(TimeRegistration.last)
@@ -34,7 +34,7 @@ class TimeRegistrationsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update time_registration" do
-    patch time_registration_url(@time_registration), params: { time_registration: { employee_id: @time_registration.employee_id, employee_number: @time_registration.employee_number, hours: @time_registration.hours, pay_code: @time_registration.pay_code, prestation_date: @time_registration.prestation_date, work_order_id: @time_registration.work_order_id } }
+    patch time_registration_url(@time_registration), params: { time_registration: {  } }
     assert_redirected_to time_registration_url(@time_registration)
   end
 

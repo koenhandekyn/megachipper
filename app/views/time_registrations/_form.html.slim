@@ -6,22 +6,4 @@
         - @time_registration.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :prestation_date
-    = f.date_select :prestation_date
-  .field
-    = f.label :work_order_id
-    = f.number_field :work_order_id
-  .field
-    = f.label :employee_id
-    = f.number_field :employee_id
-  .field
-    = f.label :employee_number
-    = f.number_field :employee_number
-  .field
-    = f.label :hours
-    = f.text_field :hours
-  .field
-    = f.label :pay_code
-    = f.text_field :pay_code
   .actions = f.submit
