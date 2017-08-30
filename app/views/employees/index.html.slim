@@ -13,9 +13,9 @@ table
         td = employee.number
         td = employee.name
         td
-          => link_to I18n.l(Time.now-1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now-1.month).month)
-          => link_to I18n.l(Time.now, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now).month)
-          => link_to I18n.l(Time.now+1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now+1.month).month)
+          => link_to I18n.l(Time.now.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now-1.month).month)
+          => link_to I18n.l(Time.now+1.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now).month)
+          => link_to I18n.l(Time.now+2.month, format: :month), blank_time_sheet_employee_path(employee, month: (Time.now+1.month).month)
         td
           => I18n.l(Time.now-1.month, format: :month)
           - 5.times do |i|
