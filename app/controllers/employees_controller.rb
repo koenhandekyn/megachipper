@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
                                         employee_firstname: @employee.firstname,
                                         employee_number: @employee.number)
     send_file(result_path,
-      :filename => "#{month_name}_#{@employee.name}_#{@employee.number}.xlsx",
+      :filename => "#{params[:month].to_i}_#{@employee.name}_#{@employee.number}.xlsx",
       :type => "application/xlsx")
   end
 

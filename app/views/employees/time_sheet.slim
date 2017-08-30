@@ -71,7 +71,7 @@ table.time_sheet
   tbody
     - time_sheet_rows.each do |row|
       tr
-        td.werkblad: input type="number" step="1" value=row.work_order_id
+        td.werkblad: input type="number" step="1" data-row_id=row.id value=row.work_order_id
         td.green.d0: input *disabled?(0) data-work_order_id=row.work_order_id data-date=prestation_date(0) value=prestation(row.work_order_id, 0)&.prestation
         td.green.d1: input *disabled?(1) data-work_order_id=row.work_order_id data-date=prestation_date(1) value=prestation(row.work_order_id, 1)&.prestation
         td.green.d2: input *disabled?(2) data-work_order_id=row.work_order_id data-date=prestation_date(2) value=prestation(row.work_order_id, 2)&.prestation
@@ -85,24 +85,25 @@ table.time_sheet
         td.white.d4: input *disabled?(4) data-work_order_id=row.work_order_id data-date=prestation_date(4) value=prestation(row.work_order_id, 4)&.extra
         th.white.tot 0
         th.fm 0
-    tr
+    tr.new_time_sheet_row
       td.werkblad: input type="number" step="1" value=""
-      td.green.d0: input disabled="disabled" value=""
-      td.green.d1: input disabled="disabled" value=""
-      td.green.d2: input disabled="disabled" value=""
-      td.green.d3: input disabled="disabled" value=""
-      td.green.d4: input disabled="disabled" value=""
+      td.green.d0: input *disabled?(0) data-date=prestation_date(0) value=""
+      td.green.d1: input *disabled?(1) data-date=prestation_date(1) value=""
+      td.green.d2: input *disabled?(2) data-date=prestation_date(2) value=""
+      td.green.d3: input *disabled?(3) data-date=prestation_date(3) value=""
+      td.green.d4: input *disabled?(4) data-date=prestation_date(4) value=""
       th.green.tot 0
-      td.white.d0: input disabled="disabled" type="number" step="0.25" value=""
-      td.white.d1: input disabled="disabled" type="number" step="0.25" value=""
-      td.white.d2: input disabled="disabled" type="number" step="0.25" value=""
-      td.white.d3: input disabled="disabled" type="number" step="0.25" value=""
-      td.white.d4: input disabled="disabled" type="number" step="0.25" value=""
+      td.white.d0: input *disabled?(0) data-date=prestation_date(0) value=""
+      td.white.d1: input *disabled?(1) data-date=prestation_date(1) value=""
+      td.white.d2: input *disabled?(2) data-date=prestation_date(2) value=""
+      td.white.d3: input *disabled?(3) data-date=prestation_date(3) value=""
+      td.white.d4: input *disabled?(4) data-date=prestation_date(4) value=""
       th.white.tot 0
       th.fm 0
 
 javascript:
   $(function() {
+
     // save green entries on update
     $('.green input').change(function(event) {
       var input = $(this);
@@ -117,6 +118,7 @@ javascript:
           console.log(xhr.responseJSON.hours);
         });
     });
+
     // save white entries on update
     $('.white input').change(function(event) {
       var input = $(this);
@@ -126,6 +128,9 @@ javascript:
         'date': input.data('date'),
         'work_order_id': input.data('work_order_id')
       }).done(function() { input.removeClass('alert'); })
-        .fail(function(xhr, status, error) { input.addClass('alert'); });
+        .fail(function(xhr, status, error) {
+          input.addClass('alert');
+          console.log(xhr.responseJSON.extra);
+      });
     });
   });

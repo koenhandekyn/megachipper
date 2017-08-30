@@ -2,11 +2,21 @@ require 'rubyXL'
 
 class BlankTimeSheet
 
+  def self.workbook
+    @@workbook ||= begin
+      puts "#{Time.now} workbook source parsing started"
+      workbook = RubyXL::Parser.parse("template/uurkaart.xlsx")
+      puts "#{Time.now} workbook source parsed"
+      workbook
+    end
+  end
+
   def self.create(start:, employee_number:, employee_name:, employee_firstname:)
 
       # month = start.strftime("%B")
       month = I18n.l(start, format: :month)
-      workbook = RubyXL::Parser.parse("template/uurkaart.xlsx")
+      # TODO cache this?
+      # TODO reuse this accross employees
 
       groen = workbook['groen']
       groen[0][2].change_contents(month)
@@ -56,6 +66,7 @@ class BlankTimeSheet
 
       result_path = "/tmp/#{month}_#{employee_number}.xlsx"
       workbook.write(result_path)
+      puts "#{Time.now} workbook result written"
       result_path
   end
 
